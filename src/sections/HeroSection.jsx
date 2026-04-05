@@ -91,7 +91,7 @@ const HeroSection = () => {
         <div
           data-hero-shape
           data-parallax="soft"
-          className="absolute left-[8%] top-28 h-24 w-24 rounded-full border border-white/10 bg-white/[0.03] blur-[2px]"
+          className="absolute left-[8%] top-28 h-24 w-24 rounded-full border border-zinc-200/80 bg-white/70 blur-[2px] dark:border-white/10 dark:bg-white/[0.03]"
         />
         <div
           data-hero-shape
@@ -101,7 +101,7 @@ const HeroSection = () => {
         <div
           data-hero-shape
           data-parallax="soft"
-          className="absolute bottom-16 right-[22%] h-32 w-32 rotate-12 rounded-[2rem] border border-white/8 bg-white/[0.02]"
+          className="absolute bottom-16 right-[22%] h-32 w-32 rotate-12 rounded-[2rem] border border-zinc-200/80 bg-white/60 dark:border-white/8 dark:bg-white/[0.02]"
         />
       </div>
 
@@ -110,7 +110,7 @@ const HeroSection = () => {
           <div className="max-w-4xl">
             <div
               data-hero-fade
-              className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/[0.045] px-4 py-2 text-[0.7rem] uppercase tracking-[0.28em] text-ink-muted backdrop-blur-xl sm:text-xs"
+              className="mb-6 inline-flex items-center gap-3 rounded-full border border-zinc-200 bg-white/85 px-4 py-2 text-[0.7rem] uppercase tracking-[0.28em] text-zinc-500 shadow-sm shadow-zinc-950/5 backdrop-blur-xl transition-colors duration-500 dark:border-zinc-800 dark:bg-white/[0.045] dark:text-zinc-400 dark:shadow-none sm:text-xs"
             >
               <span className="h-2 w-2 rounded-full bg-accent" />
               {eyebrow}
@@ -137,7 +137,7 @@ const HeroSection = () => {
 
             <p
               data-hero-fade
-              className="mt-8 max-w-2xl text-pretty text-base leading-7 text-ink-soft sm:text-lg sm:leading-8"
+              className="mt-8 max-w-2xl text-pretty text-base leading-7 text-zinc-600 transition-colors duration-500 dark:text-zinc-300 sm:text-lg sm:leading-8"
             >
               I build elegant interfaces with deliberate motion, refined systems, and
               cinematic storytelling for ambitious brands and products.
@@ -150,18 +150,18 @@ const HeroSection = () => {
               <div ref={ctaRef}>
                 <a
                   href="#projects"
-                  className="group inline-flex items-center gap-3 rounded-full bg-ink px-6 py-3 text-sm font-medium text-canvas transition duration-300 hover:shadow-[0_20px_60px_rgba(255,255,255,0.12)]"
+                  className="group inline-flex items-center gap-3 rounded-full border border-zinc-950 bg-zinc-950 px-6 py-3 text-sm font-medium text-white shadow-sm md:shadow shadow-zinc-950/10 transition-[background-color,box-shadow,transform,border-color] duration-300 hover:border-zinc-800 hover:bg-zinc-800 hover:shadow-md dark:border-zinc-900 dark:bg-zinc-950 dark:text-white dark:shadow-xl dark:hover:border-zinc-800 dark:hover:bg-zinc-800"
                 >
-                  View projects
-                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-canvas/10 transition duration-300 group-hover:translate-x-1">
-                    →
+                  <span className="text-white">View projects</span>
+                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white transition duration-300 group-hover:translate-x-1 dark:bg-black/10">
+                    &rarr;
                   </span>
                 </a>
               </div>
 
               <a
                 href="#contact"
-                className="inline-flex items-center gap-3 rounded-full border border-white/12 px-6 py-3 text-sm font-medium text-ink-soft transition duration-300 hover:border-white/22 hover:text-ink"
+                className="inline-flex items-center gap-3 rounded-full border border-zinc-200 bg-white/90 px-6 py-3 text-sm font-medium text-zinc-800 shadow-sm md:shadow shadow-zinc-950/5 transition duration-300 hover:border-zinc-300 hover:bg-zinc-50 hover:text-zinc-950 dark:border-zinc-700 dark:bg-transparent dark:text-zinc-300 dark:shadow-xl dark:hover:border-zinc-600 dark:hover:bg-white/[0.04] dark:hover:text-zinc-100"
               >
                 Start a conversation
               </a>
@@ -170,7 +170,7 @@ const HeroSection = () => {
 
           <div data-hero-fade className="lg:justify-self-end">
             <div className="glass-panel max-w-md rounded-[2rem] p-5 sm:p-6">
-              <div className="flex items-center justify-between text-xs uppercase tracking-[0.28em] text-ink-muted">
+              <div className="flex items-center justify-between text-xs uppercase tracking-[0.28em] text-zinc-500 transition-colors duration-500 dark:text-zinc-400">
                 <span>Selected focus</span>
                 <span>2026</span>
               </div>
@@ -183,11 +183,11 @@ const HeroSection = () => {
                 ].map(([title, copy], index) => (
                   <div
                     key={title}
-                    className="border-t border-white/8 pt-5 first:border-t-0 first:pt-0"
+                    className="border-t border-zinc-200 pt-5 first:border-t-0 first:pt-0 dark:border-zinc-800"
                     style={{ transitionDelay: `${index * 120}ms` }}
                   >
                     <p className="text-sm uppercase tracking-[0.22em] text-accent">{title}</p>
-                    <p className="mt-2 text-sm leading-7 text-ink-soft sm:text-[0.95rem]">{copy}</p>
+                    <p className="mt-2 text-sm leading-7 text-zinc-600 transition-colors duration-500 dark:text-zinc-300 sm:text-[0.95rem]">{copy}</p>
                   </div>
                 ))}
               </div>
@@ -197,19 +197,19 @@ const HeroSection = () => {
 
         <div
           data-hero-fade
-          className="grid gap-5 border-t border-white/8 pt-8 text-sm text-ink-muted sm:grid-cols-3"
+          className="grid gap-5 border-t border-zinc-200 pt-8 text-sm text-zinc-500 transition-colors duration-500 dark:border-zinc-800 dark:text-zinc-400 sm:grid-cols-3"
         >
           <div>
             <p className="text-xs uppercase tracking-[0.28em]">Currently</p>
-            <p className="mt-2 text-base text-ink-soft">Crafting immersive portfolio experiences</p>
+            <p className="mt-2 text-base text-zinc-700 transition-colors duration-500 dark:text-zinc-300">Crafting immersive portfolio experiences</p>
           </div>
           <div>
             <p className="text-xs uppercase tracking-[0.28em]">Availability</p>
-            <p className="mt-2 text-base text-ink-soft">Open for select freelance and product work</p>
+            <p className="mt-2 text-base text-zinc-700 transition-colors duration-500 dark:text-zinc-300">Open for select freelance and product work</p>
           </div>
           <div>
             <p className="text-xs uppercase tracking-[0.28em]">Speciality</p>
-            <p className="mt-2 text-base text-ink-soft">Motion systems, interactions, and premium frontend builds</p>
+            <p className="mt-2 text-base text-zinc-700 transition-colors duration-500 dark:text-zinc-300">Motion systems, interactions, and premium frontend builds</p>
           </div>
         </div>
       </div>
