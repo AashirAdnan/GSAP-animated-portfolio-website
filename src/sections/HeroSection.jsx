@@ -1,0 +1,220 @@
+import { useRef } from "react";
+import { gsap, useGSAP } from "../lib/gsap";
+import useMagnetic from "../hooks/useMagnetic";
+
+const eyebrow = "Creative developer based in Pakistan";
+const titleLines = ["Designing motion-first", "digital experiences"];
+
+const HeroSection = () => {
+  const sectionRef = useRef(null);
+  const ctaRef = useMagnetic(18);
+
+  useGSAP(
+    () => {
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (reduceMotion) {
+        return undefined;
+      }
+
+      const timeline = gsap.timeline({
+        defaults: {
+          ease: "power3.out",
+        },
+      });
+
+      timeline
+        .from("[data-hero-fade]", {
+          opacity: 0,
+          y: 24,
+          duration: 0.9,
+          stagger: 0.1,
+        })
+        .from(
+          "[data-hero-word]",
+          {
+            yPercent: 110,
+            rotateX: -16,
+            transformOrigin: "50% 100%",
+            duration: 1,
+            stagger: 0.08,
+          },
+          "-=0.5",
+        )
+        .from(
+          "[data-hero-shape]",
+          {
+            scale: 0.8,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.12,
+          },
+          "-=1",
+        );
+
+      gsap.to("[data-parallax='soft']", {
+        yPercent: -14,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      gsap.to("[data-parallax='deep']", {
+        yPercent: -24,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      return () => {
+        timeline.kill();
+      };
+    },
+    { scope: sectionRef },
+  );
+
+  return (
+    <section
+      ref={sectionRef}
+      id="hero"
+      className="hero-grid relative isolate overflow-hidden px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-32 lg:px-12 lg:pb-24 lg:pt-36"
+    >
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          data-hero-shape
+          data-parallax="soft"
+          className="absolute left-[8%] top-28 h-24 w-24 rounded-full border border-white/10 bg-white/[0.03] blur-[2px]"
+        />
+        <div
+          data-hero-shape
+          data-parallax="deep"
+          className="absolute right-[10%] top-20 h-40 w-40 rounded-full bg-[radial-gradient(circle_at_center,rgba(119,122,255,0.22),rgba(119,122,255,0))]"
+        />
+        <div
+          data-hero-shape
+          data-parallax="soft"
+          className="absolute bottom-16 right-[22%] h-32 w-32 rotate-12 rounded-[2rem] border border-white/8 bg-white/[0.02]"
+        />
+      </div>
+
+      <div className="mx-auto flex min-h-[calc(100vh-7rem)] w-full max-w-7xl flex-col justify-between gap-16">
+        <div className="grid gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.65fr)] lg:items-end">
+          <div className="max-w-4xl">
+            <div
+              data-hero-fade
+              className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/[0.045] px-4 py-2 text-[0.7rem] uppercase tracking-[0.28em] text-ink-muted backdrop-blur-xl sm:text-xs"
+            >
+              <span className="h-2 w-2 rounded-full bg-accent" />
+              {eyebrow}
+            </div>
+
+            <div className="space-y-4 py-3 sm:space-y-5 sm:py-4">
+              {titleLines.map((line) => (
+                <div key={line} className="overflow-hidden px-1 py-[0.22em]">
+                  <h1 className="text-balance text-5xl font-semibold leading-[1.02] tracking-[-0.065em] text-ink [font-family:var(--font-display)] sm:text-7xl lg:text-[7rem]">
+                    {line.split(" ").map((word) => (
+                      <span
+                        key={`${line}-${word}`}
+                        className="mr-[0.28em] inline-block overflow-hidden pb-[0.14em]"
+                      >
+                        <span data-hero-word className="inline-block will-change-transform">
+                          {word}
+                        </span>
+                      </span>
+                    ))}
+                  </h1>
+                </div>
+              ))}
+            </div>
+
+            <p
+              data-hero-fade
+              className="mt-8 max-w-2xl text-pretty text-base leading-7 text-ink-soft sm:text-lg sm:leading-8"
+            >
+              I build elegant interfaces with deliberate motion, refined systems, and
+              cinematic storytelling for ambitious brands and products.
+            </p>
+
+            <div
+              data-hero-fade
+              className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
+            >
+              <div ref={ctaRef}>
+                <a
+                  href="#projects"
+                  className="group inline-flex items-center gap-3 rounded-full bg-ink px-6 py-3 text-sm font-medium text-canvas transition duration-300 hover:shadow-[0_20px_60px_rgba(255,255,255,0.12)]"
+                >
+                  View projects
+                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-canvas/10 transition duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </a>
+              </div>
+
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-3 rounded-full border border-white/12 px-6 py-3 text-sm font-medium text-ink-soft transition duration-300 hover:border-white/22 hover:text-ink"
+              >
+                Start a conversation
+              </a>
+            </div>
+          </div>
+
+          <div data-hero-fade className="lg:justify-self-end">
+            <div className="glass-panel max-w-md rounded-[2rem] p-5 sm:p-6">
+              <div className="flex items-center justify-between text-xs uppercase tracking-[0.28em] text-ink-muted">
+                <span>Selected focus</span>
+                <span>2026</span>
+              </div>
+
+              <div className="mt-8 space-y-6">
+                {[
+                  ["UI systems", "Designing flexible component libraries with feel and restraint."],
+                  ["GSAP motion", "Building scroll narratives that stay smooth on real devices."],
+                  ["Frontend craft", "Shipping accessible products with strong visual hierarchy."],
+                ].map(([title, copy], index) => (
+                  <div
+                    key={title}
+                    className="border-t border-white/8 pt-5 first:border-t-0 first:pt-0"
+                    style={{ transitionDelay: `${index * 120}ms` }}
+                  >
+                    <p className="text-sm uppercase tracking-[0.22em] text-accent">{title}</p>
+                    <p className="mt-2 text-sm leading-7 text-ink-soft sm:text-[0.95rem]">{copy}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          data-hero-fade
+          className="grid gap-5 border-t border-white/8 pt-8 text-sm text-ink-muted sm:grid-cols-3"
+        >
+          <div>
+            <p className="text-xs uppercase tracking-[0.28em]">Currently</p>
+            <p className="mt-2 text-base text-ink-soft">Crafting immersive portfolio experiences</p>
+          </div>
+          <div>
+            <p className="text-xs uppercase tracking-[0.28em]">Availability</p>
+            <p className="mt-2 text-base text-ink-soft">Open for select freelance and product work</p>
+          </div>
+          <div>
+            <p className="text-xs uppercase tracking-[0.28em]">Speciality</p>
+            <p className="mt-2 text-base text-ink-soft">Motion systems, interactions, and premium frontend builds</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HeroSection;
