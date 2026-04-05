@@ -13,7 +13,9 @@ const ContactSection = () => {
 
   useGSAP(
     () => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
 
       if (reduceMotion) {
         return undefined;
@@ -45,9 +47,39 @@ const ContactSection = () => {
     { scope: sectionRef },
   );
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitted(true);
+
+    const formData = new FormData(event.target);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const response = await fetch("http://localhost:3001/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        // Success - message sent
+        setIsSubmitted(true);
+      } else {
+        // Error
+        setIsSubmitted(false);
+        alert("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setIsSubmitted(false);
+      alert("Failed to send message. Please try again.");
+    }
   };
 
   return (
@@ -61,18 +93,27 @@ const ContactSection = () => {
           data-contact-intro
           className="mb-12 flex flex-col gap-5 lg:max-w-3xl"
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-accent">Contact</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-accent">
+            Contact
+          </p>
           <h2 className="text-balance text-3xl font-semibold tracking-[-0.06em] text-zinc-900 transition-colors duration-500 dark:text-zinc-100 sm:text-5xl lg:text-6xl">
             Let&apos;s build something deliberate, polished, and memorable.
           </h2>
           <p className="max-w-2xl text-lg leading-8 text-zinc-700 transition-colors duration-500 dark:text-zinc-300 sm:text-[1.1rem] sm:leading-9">
-            If you&apos;re building a product, portfolio, or brand experience that needs stronger
-            motion, cleaner frontend execution, and thoughtful visual pacing, I&apos;d love to hear about it.
+            If you&apos;re building a product, portfolio, or brand experience
+            that needs stronger motion, cleaner frontend execution, and
+            thoughtful visual pacing, I&apos;d love to hear about it.
           </p>
         </div>
 
-        <div data-contact-grid className="grid gap-6 lg:grid-cols-[0.9fr_minmax(0,1.1fr)]">
-          <div data-contact-card className="glass-panel rounded-[2rem] p-6 sm:p-7">
+        <div
+          data-contact-grid
+          className="grid gap-6 lg:grid-cols-[0.9fr_minmax(0,1.1fr)]"
+        >
+          <div
+            data-contact-card
+            className="glass-panel rounded-[2rem] p-6 sm:p-7"
+          >
             <div className="flex h-full flex-col justify-between gap-8">
               <div>
                 <p className="text-[0.72rem] uppercase tracking-[0.3em] text-accent">
@@ -82,7 +123,8 @@ const ContactSection = () => {
                   Muhammad Aashir Adnan
                 </p>
                 <p className="mt-4 text-sm leading-7 text-zinc-700 transition-colors duration-500 dark:text-zinc-300 sm:text-[0.98rem]">
-                  Frontend Developer crafting motion-rich interfaces that feel precise, calm, and intuitive.
+                  Frontend Developer crafting motion-rich interfaces that feel
+                  precise, calm, and intuitive.
                 </p>
               </div>
 
@@ -104,7 +146,10 @@ const ContactSection = () => {
             </div>
           </div>
 
-          <div data-contact-card className="glass-panel rounded-[2rem] p-6 sm:p-7">
+          <div
+            data-contact-card
+            className="glass-panel rounded-[2rem] p-6 sm:p-7"
+          >
             <form className="grid gap-4" onSubmit={handleSubmit}>
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="grid gap-2">
