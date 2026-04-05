@@ -20,11 +20,19 @@ app.get("/", (req, res) => {
 
 // Create transporter
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.GMAIL_USER, // Your Gmail address
     pass: process.env.GMAIL_APP_PASSWORD, // App password (not regular password)
   },
+  tls: {
+    rejectUnauthorized: false,
+  },
+  socketTimeout: 10000,
+  connectionTimeout: 10000,
+  family: 4,
 });
 
 // Verify transporter
