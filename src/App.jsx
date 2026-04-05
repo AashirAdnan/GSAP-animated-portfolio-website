@@ -6,7 +6,6 @@ import AboutSection from "./sections/AboutSection";
 import ContactSection from "./sections/ContactSection";
 import FooterSection from "./sections/FooterSection";
 import HeroSection from "./sections/HeroSection";
-import ProjectsSection from "./sections/ProjectsSection";
 import SkillsSection from "./sections/SkillsSection";
 import useLenis from "./hooks/useLenis";
 
@@ -28,11 +27,12 @@ const App = () => {
       {!isLoaded && <Preloader onComplete={() => setIsLoaded(true)} />}
       <CustomCursor />
       <Navbar />
-      <main className={`transition-[opacity,color,background-color,border-color] duration-700 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
+      <main
+        className={`transition-[opacity,color,background-color,border-color] duration-700 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+      >
         <HeroSection />
         <AboutSection />
         <SkillsSection />
-        <ProjectsSection />
         <ContactSection />
         <FooterSection />
       </main>

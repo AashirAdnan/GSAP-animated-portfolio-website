@@ -45,7 +45,9 @@ const ProjectsSection = () => {
 
   useGSAP(
     () => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
 
       if (reduceMotion) {
         return undefined;
@@ -145,13 +147,17 @@ const ProjectsSection = () => {
           data-projects-intro
           className="mb-12 flex flex-col gap-5 lg:max-w-3xl"
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-accent">Projects</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-accent">
+            Projects
+          </p>
           <h2 className="text-balance text-3xl font-semibold tracking-[-0.06em] text-zinc-900 transition-colors duration-500 dark:text-zinc-100 sm:text-5xl lg:text-6xl">
-            Selected work shaped around motion, structure, and premium interaction.
+            Selected work shaped around motion, structure, and premium
+            interaction.
           </h2>
           <p className="max-w-2xl text-lg leading-8 text-zinc-700 transition-colors duration-500 dark:text-zinc-300 sm:text-[1.1rem] sm:leading-9">
-            These featured builds reflect the way I approach frontend work: visual restraint,
-            strong systems, and animation that strengthens the experience rather than competing with it.
+            These featured builds reflect the way I approach frontend work:
+            visual restraint, strong systems, and animation that strengthens the
+            experience rather than competing with it.
           </p>
         </div>
 
@@ -167,10 +173,15 @@ const ProjectsSection = () => {
                   data-project-media
                   className="relative flex h-full flex-col justify-between overflow-hidden rounded-[1.6rem] border border-zinc-200/80 bg-[linear-gradient(145deg,#ffffff,#eef1f7)] p-6 shadow-sm md:shadow shadow-zinc-950/5 transition-colors duration-500 dark:border-zinc-700 dark:bg-[linear-gradient(145deg,#111117,#191925)] dark:shadow-xl sm:p-7"
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient}`} />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${project.gradient}`}
+                  />
                   <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/10 via-transparent to-transparent dark:from-black/35" />
 
-                  <div data-project-meta className="relative z-10 flex items-start justify-between gap-4">
+                  <div
+                    data-project-meta
+                    className="relative z-10 flex items-start justify-between gap-4"
+                  >
                     <div>
                       <p className="text-[0.7rem] uppercase tracking-[0.28em] text-zinc-500 transition-colors duration-500 dark:text-zinc-400">
                         {project.type}

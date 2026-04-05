@@ -9,9 +9,30 @@ const HeroSection = () => {
   const sectionRef = useRef(null);
   const ctaRef = useMagnetic(18);
 
+  const handleNavigate = (event, href) => {
+    const target = document.querySelector(href);
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+
+    gsap.to(window, {
+      duration: 1.2,
+      ease: "power3.inOut",
+      scrollTo: {
+        y: target,
+        offsetY: 28,
+      },
+    });
+  };
+
   useGSAP(
     () => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
 
       if (reduceMotion) {
         return undefined;
@@ -125,7 +146,10 @@ const HeroSection = () => {
                         key={`${line}-${word}`}
                         className="mr-[0.28em] inline-block overflow-hidden pb-[0.14em]"
                       >
-                        <span data-hero-word className="inline-block will-change-transform">
+                        <span
+                          data-hero-word
+                          className="inline-block will-change-transform"
+                        >
                           {word}
                         </span>
                       </span>
@@ -139,8 +163,9 @@ const HeroSection = () => {
               data-hero-fade
               className="mt-8 max-w-2xl text-pretty text-base leading-7 text-zinc-600 transition-colors duration-500 dark:text-zinc-300 sm:text-lg sm:leading-8"
             >
-              I build elegant interfaces with deliberate motion, refined systems, and
-              cinematic storytelling for ambitious brands and products.
+              I build elegant interfaces with deliberate motion, refined
+              systems, and cinematic storytelling for ambitious brands and
+              products.
             </p>
 
             <div
@@ -149,10 +174,11 @@ const HeroSection = () => {
             >
               <div ref={ctaRef}>
                 <a
-                  href="#projects"
+                  href="#about"
+                  onClick={(event) => handleNavigate(event, "#about")}
                   className="group inline-flex items-center gap-3 rounded-full border border-zinc-950 bg-zinc-950 px-6 py-3 text-sm font-medium text-white shadow-sm md:shadow shadow-zinc-950/10 transition-[background-color,box-shadow,transform,border-color] duration-300 hover:border-zinc-800 hover:bg-zinc-800 hover:shadow-md dark:border-zinc-900 dark:bg-zinc-950 dark:text-white dark:shadow-xl dark:hover:border-zinc-800 dark:hover:bg-zinc-800"
                 >
-                  <span className="text-white">View projects</span>
+                  <span className="text-white">About me</span>
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white transition duration-300 group-hover:translate-x-1 dark:bg-black/10">
                     &rarr;
                   </span>
@@ -177,17 +203,30 @@ const HeroSection = () => {
 
               <div className="mt-8 space-y-6">
                 {[
-                  ["UI systems", "Designing flexible component libraries with feel and restraint."],
-                  ["GSAP motion", "Building scroll narratives that stay smooth on real devices."],
-                  ["Frontend craft", "Shipping accessible products with strong visual hierarchy."],
+                  [
+                    "UI systems",
+                    "Designing flexible component libraries with feel and restraint.",
+                  ],
+                  [
+                    "GSAP motion",
+                    "Building scroll narratives that stay smooth on real devices.",
+                  ],
+                  [
+                    "Frontend craft",
+                    "Shipping accessible products with strong visual hierarchy.",
+                  ],
                 ].map(([title, copy], index) => (
                   <div
                     key={title}
                     className="border-t border-zinc-200 pt-5 first:border-t-0 first:pt-0 dark:border-zinc-800"
                     style={{ transitionDelay: `${index * 120}ms` }}
                   >
-                    <p className="text-sm uppercase tracking-[0.22em] text-accent">{title}</p>
-                    <p className="mt-2 text-sm leading-7 text-zinc-600 transition-colors duration-500 dark:text-zinc-300 sm:text-[0.95rem]">{copy}</p>
+                    <p className="text-sm uppercase tracking-[0.22em] text-accent">
+                      {title}
+                    </p>
+                    <p className="mt-2 text-sm leading-7 text-zinc-600 transition-colors duration-500 dark:text-zinc-300 sm:text-[0.95rem]">
+                      {copy}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -201,15 +240,21 @@ const HeroSection = () => {
         >
           <div>
             <p className="text-xs uppercase tracking-[0.28em]">Currently</p>
-            <p className="mt-2 text-base text-zinc-700 transition-colors duration-500 dark:text-zinc-300">Crafting immersive portfolio experiences</p>
+            <p className="mt-2 text-base text-zinc-700 transition-colors duration-500 dark:text-zinc-300">
+              Crafting immersive portfolio experiences
+            </p>
           </div>
           <div>
             <p className="text-xs uppercase tracking-[0.28em]">Availability</p>
-            <p className="mt-2 text-base text-zinc-700 transition-colors duration-500 dark:text-zinc-300">Open for select freelance and product work</p>
+            <p className="mt-2 text-base text-zinc-700 transition-colors duration-500 dark:text-zinc-300">
+              Open for select freelance and product work
+            </p>
           </div>
           <div>
             <p className="text-xs uppercase tracking-[0.28em]">Speciality</p>
-            <p className="mt-2 text-base text-zinc-700 transition-colors duration-500 dark:text-zinc-300">Motion systems, interactions, and premium frontend builds</p>
+            <p className="mt-2 text-base text-zinc-700 transition-colors duration-500 dark:text-zinc-300">
+              Motion systems, interactions, and premium frontend builds
+            </p>
           </div>
         </div>
       </div>
