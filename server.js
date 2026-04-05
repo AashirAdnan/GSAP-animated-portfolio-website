@@ -10,7 +10,6 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
-app.options("*", cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
