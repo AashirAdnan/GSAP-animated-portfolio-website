@@ -75,13 +75,16 @@ const ContactSection = () => {
         setIsSubmitted(true);
       } else {
         // Error
+        const errorData = await response.json();
         setIsSubmitted(false);
-        alert("Failed to send message. Please try again.");
+        alert(
+          `Failed to send message: ${errorData.details || errorData.error}`,
+        );
       }
     } catch (error) {
       console.error("Error sending message:", error);
       setIsSubmitted(false);
-      alert("Failed to send message. Please try again.");
+      alert(`Failed to send message: ${error.message}`);
     }
   };
 
