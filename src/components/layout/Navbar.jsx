@@ -116,7 +116,7 @@ const Navbar = () => {
   return (
     <header
       ref={navRef}
-      className="pointer-events-none fixed inset-x-0 top-0 z-[70] px-4 pt-4 sm:px-6 sm:pt-6"
+      className="pointer-events-none fixed inset-x-0 top-0 z-70 px-4 pt-4 sm:px-6 sm:pt-6"
     >
       <div
         data-nav-shell
@@ -133,7 +133,7 @@ const Navbar = () => {
 
         <nav
           data-nav-links
-          className="hidden items-center gap-[18px] rounded-full border border-zinc-200 bg-white/80 px-2 py-2 shadow-sm shadow-zinc-950/5 transition-[background-color,border-color,box-shadow] duration-500 dark:border-zinc-800 dark:bg-black/25 dark:shadow-none md:flex"
+          className="hidden items-center gap-4.5 rounded-full border border-zinc-200 bg-white/80 px-2 py-2 shadow-sm shadow-zinc-950/5 transition-[background-color,border-color,box-shadow] duration-500 dark:border-zinc-800 dark:bg-black/25 dark:shadow-none md:flex"
           aria-label="Primary"
         >
           {navItems.map((item) => (
@@ -141,7 +141,7 @@ const Navbar = () => {
               key={item.href}
               href={item.href}
               onClick={(event) => handleNavigate(event, item.href)}
-              className="rounded-full px-4 py-2 text-sm text-zinc-600 transition duration-300 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-white/[0.06] dark:hover:text-zinc-100"
+              className="rounded-full px-4 py-2 text-sm text-zinc-600 transition duration-300 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-white/6 dark:hover:text-zinc-100"
             >
               {item.label}
             </a>

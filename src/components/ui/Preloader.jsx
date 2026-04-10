@@ -9,7 +9,9 @@ const Preloader = ({ onComplete }) => {
 
   useGSAP(
     () => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
 
       if (reduceMotion) {
         completedRef.current = true;
@@ -107,7 +109,7 @@ const Preloader = ({ onComplete }) => {
   return (
     <div
       ref={preloaderRef}
-      className="fixed inset-0 z-[100] overflow-hidden bg-[#050507] text-white"
+      className="fixed inset-0 z-100 overflow-hidden bg-[#050507] text-white"
     >
       <div className="absolute inset-0">
         {[0, 1, 2].map((index) => (
@@ -151,7 +153,10 @@ const Preloader = ({ onComplete }) => {
 
         <div className="space-y-4">
           <div className="h-px overflow-hidden bg-white/10">
-            <div data-loader-progress className="h-full origin-left scale-x-0 bg-white" />
+            <div
+              data-loader-progress
+              className="h-full origin-left scale-x-0 bg-white"
+            />
           </div>
           <div className="flex items-center justify-between text-[0.65rem] uppercase tracking-[0.3em] text-white/45 sm:text-xs">
             <span>Preparing experience</span>

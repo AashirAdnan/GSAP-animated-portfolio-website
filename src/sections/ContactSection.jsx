@@ -49,43 +49,20 @@ const ContactSection = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+    const name = formData.get("name")?.toString().trim() ?? "";
+    const email = formData.get("email")?.toString().trim() ?? "";
+    const message = formData.get("message")?.toString().trim() ?? "";
+    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\nProject brief:\n${message}`,
+    );
+
+    window.location.href = `mailto:m.aashiradnan@gmail.com?subject=${subject}&body=${body}`;
     setIsSubmitted(true);
-
-    const formData = new FormData(event.target);
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      message: formData.get("message"),
-    };
-
-    try {
-      const response = await fetch(
-        "https://gsap-animated-portfolio-website-production.up.railway.app/api/contact",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        },
-      );
-
-      if (response.ok) {
-        // Success - message sent
-        setIsSubmitted(true);
-      } else {
-        // Error
-        const errorData = await response.json();
-        setIsSubmitted(false);
-        alert(
-          `Failed to send message: ${errorData.details || errorData.error}`,
-        );
-      }
-    } catch (error) {
-      console.error("Error sending message:", error);
-      setIsSubmitted(false);
-      alert(`Failed to send message: ${error.message}`);
-    }
+    form.reset();
   };
 
   return (
@@ -167,7 +144,7 @@ const ContactSection = () => {
                     name="name"
                     required
                     placeholder="Your name"
-                    className="rounded-[1.2rem] border border-zinc-200 bg-white/90 px-4 py-3 text-sm text-zinc-900 shadow-sm md:shadow shadow-zinc-950/5 outline-none transition-[border-color,background-color,box-shadow] duration-300 placeholder:text-zinc-400 focus:border-accent focus:bg-white dark:border-zinc-700 dark:bg-white/[0.05] dark:text-zinc-100 dark:shadow-xl dark:placeholder:text-zinc-500"
+                    className="rounded-[1.2rem] border border-zinc-200 bg-white/90 px-4 py-3 text-sm text-zinc-900 shadow-sm md:shadow shadow-zinc-950/5 outline-none transition-[border-color,background-color,box-shadow] duration-300 placeholder:text-zinc-400 focus:border-accent focus:bg-white focus:shadow-[0_0_0_4px_rgba(79,107,255,0.12)] dark:border-zinc-600 dark:bg-zinc-950/70 dark:text-zinc-100 dark:shadow-xl dark:placeholder:text-zinc-400 dark:focus:border-accent dark:focus:bg-zinc-950 dark:focus:shadow-[0_0_0_4px_rgba(142,160,255,0.18)]"
                   />
                 </label>
 
@@ -180,7 +157,7 @@ const ContactSection = () => {
                     name="email"
                     required
                     placeholder="you@example.com"
-                    className="rounded-[1.2rem] border border-zinc-200 bg-white/90 px-4 py-3 text-sm text-zinc-900 shadow-sm md:shadow shadow-zinc-950/5 outline-none transition-[border-color,background-color,box-shadow] duration-300 placeholder:text-zinc-400 focus:border-accent focus:bg-white dark:border-zinc-700 dark:bg-white/[0.05] dark:text-zinc-100 dark:shadow-xl dark:placeholder:text-zinc-500"
+                    className="rounded-[1.2rem] border border-zinc-200 bg-white/90 px-4 py-3 text-sm text-zinc-900 shadow-sm md:shadow shadow-zinc-950/5 outline-none transition-[border-color,background-color,box-shadow] duration-300 placeholder:text-zinc-400 focus:border-accent focus:bg-white focus:shadow-[0_0_0_4px_rgba(79,107,255,0.12)] dark:border-zinc-600 dark:bg-zinc-950/70 dark:text-zinc-100 dark:shadow-xl dark:placeholder:text-zinc-400 dark:focus:border-accent dark:focus:bg-zinc-950 dark:focus:shadow-[0_0_0_4px_rgba(142,160,255,0.18)]"
                   />
                 </label>
               </div>
@@ -195,7 +172,7 @@ const ContactSection = () => {
                   data-lenis-prevent
                   required
                   placeholder="Tell me a little about what you're building."
-                  className="no-scrollbar resize-none overflow-y-auto rounded-[1.4rem] border border-zinc-200 bg-white/90 px-4 py-3 text-sm leading-7 text-zinc-900 shadow-sm md:shadow shadow-zinc-950/5 outline-none transition-[border-color,background-color,box-shadow] duration-300 placeholder:text-zinc-400 focus:border-accent focus:bg-white dark:border-zinc-700 dark:bg-white/[0.05] dark:text-zinc-100 dark:shadow-xl dark:placeholder:text-zinc-500"
+                  className="no-scrollbar resize-none overflow-y-auto rounded-[1.4rem] border border-zinc-200 bg-white/90 px-4 py-3 text-sm leading-7 text-zinc-900 shadow-sm md:shadow shadow-zinc-950/5 outline-none transition-[border-color,background-color,box-shadow] duration-300 placeholder:text-zinc-400 focus:border-accent focus:bg-white focus:shadow-[0_0_0_4px_rgba(79,107,255,0.12)] dark:border-zinc-600 dark:bg-zinc-950/70 dark:text-zinc-100 dark:shadow-xl dark:placeholder:text-zinc-400 dark:focus:border-accent dark:focus:bg-zinc-950 dark:focus:shadow-[0_0_0_4px_rgba(142,160,255,0.18)]"
                 />
               </label>
 
@@ -212,7 +189,7 @@ const ContactSection = () => {
 
                 <p className="text-sm text-zinc-600 transition-colors duration-500 dark:text-zinc-300">
                   {isSubmitted
-                    ? "Message received. I'll get back to you soon."
+                    ? "Your email app should open with the message prefilled."
                     : "Usually replies within a couple of days."}
                 </p>
               </div>

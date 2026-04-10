@@ -3,7 +3,9 @@ const SunIcon = ({ isVisible }) => {
     <svg
       viewBox="0 0 24 24"
       className={`absolute h-[1.05rem] w-[1.05rem] transition-all duration-500 ${
-        isVisible ? "scale-100 rotate-0 opacity-100" : "scale-75 rotate-45 opacity-0"
+        isVisible
+          ? "scale-100 rotate-0 opacity-100"
+          : "scale-75 rotate-45 opacity-0"
       }`}
       fill="none"
       stroke="currentColor"
@@ -22,8 +24,10 @@ const MoonIcon = ({ isVisible }) => {
   return (
     <svg
       viewBox="0 0 24 24"
-      className={`absolute h-[1rem] w-[1rem] transition-all duration-500 ${
-        isVisible ? "scale-100 rotate-0 opacity-100" : "scale-75 -rotate-45 opacity-0"
+      className={`absolute h-4 w-4 transition-all duration-500 ${
+        isVisible
+          ? "scale-100 rotate-0 opacity-100"
+          : "scale-75 -rotate-45 opacity-0"
       }`}
       fill="currentColor"
       aria-hidden="true"
